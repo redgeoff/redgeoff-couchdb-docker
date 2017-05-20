@@ -31,6 +31,7 @@ if [ "$1" = '/home/couchdb/couchdb/bin/couchdb' ]; then
 		chown couchdb:couchdb /home/couchdb/couchdb/etc/local.d/secret.ini
 	fi
 
+	exec gosu couchdb "$@"
 fi
 
 exec "$@"
