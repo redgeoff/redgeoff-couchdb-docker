@@ -21,7 +21,6 @@ CouchDB in a docker container
 We assume /home/ubuntu/common/ssl/mydomain.crt and /home/ubuntu/common/ssl/mydomain.key are the certificate and private key for your SSL config.
 
     docker run -d --name couchdb \
-      -p 5984:5984 \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
       -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1" \
@@ -52,7 +51,6 @@ We assume /home/ubuntu/common/etc/local.ini contains any custom config, e.g.
 Then run:
 
     docker run -d --name couchdb \
-      -p 5984:5984 \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
       -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1" \
