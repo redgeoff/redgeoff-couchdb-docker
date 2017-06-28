@@ -16,7 +16,7 @@ CouchDB in a docker container
       redgeoff-couchdb
 
 
-## Example with SSL:
+## Example with SSL
 
 We assume /home/ubuntu/common/ssl/mydomain.crt and /home/ubuntu/common/ssl/mydomain.key are the certificate and private key for your SSL config.
 
@@ -35,7 +35,7 @@ We assume /home/ubuntu/common/ssl/mydomain.crt and /home/ubuntu/common/ssl/mydom
       redgeoff-couchdb
 
 
-## Example with SSL and custom local.ini:
+## Example with SSL and custom local.ini
 
 We assume /home/ubuntu/common/etc/local.ini contains any custom config, e.g.
 
