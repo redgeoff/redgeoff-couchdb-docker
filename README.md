@@ -7,31 +7,29 @@ CouchDB in a docker container
     docker run -d --name couchdb \
       -p 5984:5984 \
       -v /home/ubuntu/common:/home/couchdb/common \
-      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1" \
+      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1.mydomain.com" \
       -e COUCHDB_USER='admin' \
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
       -e COUCHDB_COOKIE='mycookie' \
-      -e NODENAME='mynode' \
       -e COUCHDB_SECRET='mysecret' \
       redgeoff-couchdb
 
 
 ## Example with SSL
 
-We assume /home/ubuntu/common/ssl/mydomain.crt and /home/ubuntu/common/ssl/mydomain.key are the certificate and private key for your SSL config.
+We assume /home/ubuntu/common/ssl/mydomain.com.crt and /home/ubuntu/common/ssl/mydomain.com.key are the certificate and private key for your SSL config.
 
     docker run -d --name couchdb \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
-      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1" \
+      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1.mydomain.com" \
       -e COUCHDB_USER='admin' \
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
       -e COUCHDB_COOKIE='mycookie' \
-      -e NODENAME='mynode' \
       -e COUCHDB_SECRET='mysecret' \
-      -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.crt" \
-      -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.key" \
-      -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.crt" \
+      -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
+      -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
+      -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       redgeoff-couchdb
 
 
@@ -53,14 +51,69 @@ Then run:
     docker run -d --name couchdb \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
-      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1" \
+      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1.mydomain.com" \
       -e COUCHDB_USER='admin' \
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
       -e COUCHDB_COOKIE='mycookie' \
-      -e NODENAME='mynode' \
       -e COUCHDB_SECRET='mysecret' \
-      -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.crt" \
-      -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.key" \
-      -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.crt" \
+      -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
+      -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
+      -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
       redgeoff-couchdb
+
+
+## Create Cluster
+
+For example, assume that you have the following DNS config:
+
+    192.168.50.10 couchdb1.mydomain.com
+    192.168.50.11 couchdb2.mydomain.com
+
+On server 1, run:
+
+    docker run -d --name couchdb \
+      -p 5984:5984 \
+      -p 6984:6984 \
+      -p 5986:5986 \
+      -p 4369:4369 \
+      -p 9100-9200:9100-9200 \
+      -v /home/ubuntu/common:/home/couchdb/common \
+      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1.mydomain.com" \
+      -e COUCHDB_USER='admin' \
+      -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
+      -e COUCHDB_COOKIE='mycookie' \
+      -e COUCHDB_NODE_NAME='192.168.50.10' \
+      -e COUCHDB_SECRET='mysecret' \
+      -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
+      -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
+      -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
+      -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
+      redgeoff-couchdb
+
+On server 2, run:
+
+    docker run -d --name couchdb \
+      -p 5984:5984 \
+      -p 6984:6984 \
+      -p 5986:5986 \
+      -p 4369:4369 \
+      -p 9100-9200:9100-9200 \
+      -v /home/ubuntu/common:/home/couchdb/common \
+      -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb2.mydomain.com" \
+      -e COUCHDB_USER='admin' \
+      -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
+      -e COUCHDB_COOKIE='mycookie' \
+      -e COUCHDB_NODE_NAME='192.168.50.11' \
+      -e COUCHDB_SECRET='mysecret' \
+      -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
+      -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
+      -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
+      -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
+      redgeoff-couchdb
+
+Create cluster:
+
+    ./create-cluster.sh admin admin 5984 5986 "192.168.50.12 192.168.50.11"
+
+You can then use a load balancer to balance port 6984 traffic over 192.168.50.12 and 192.168.50.11. You can also do the the SSL termination directly on the load balancer and have the load balancer connect with the CouchDB nodes on port 5984. For better security, you should use a firewall to make sure to only allow outside traffic via the load balancer.

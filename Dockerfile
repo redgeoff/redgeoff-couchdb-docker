@@ -83,7 +83,7 @@ RUN mkdir /home/couchdb/couchdb/data /home/couchdb/couchdb/etc/default.d \
 
 WORKDIR /home/couchdb/couchdb
 
-EXPOSE 5984 4369 9100-9200
+EXPOSE 5984 5986 4369 9100-9200
 
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 CMD ["/home/couchdb/couchdb/bin/couchdb"]
