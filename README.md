@@ -12,7 +12,7 @@ CouchDB in a docker container
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
       -e COUCHDB_COOKIE='mycookie' \
       -e COUCHDB_SECRET='mysecret' \
-      redgeoff-couchdb
+      redgeoff/couchdb
 
 
 ## Example with SSL
@@ -30,7 +30,7 @@ We assume /home/ubuntu/common/ssl/mydomain.com.crt and /home/ubuntu/common/ssl/m
       -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
-      redgeoff-couchdb
+      redgeoff/couchdb
 
 
 ## Example with SSL and custom local.ini
@@ -60,7 +60,7 @@ Then run:
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
-      redgeoff-couchdb
+      redgeoff/couchdb
 
 
 ## Create Cluster
@@ -89,7 +89,7 @@ On server 1, run:
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
-      redgeoff-couchdb
+      redgeoff/couchdb
 
 On server 2, run:
 
@@ -110,7 +110,7 @@ On server 2, run:
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
-      redgeoff-couchdb
+      redgeoff/couchdb
 
 Create cluster:
 
