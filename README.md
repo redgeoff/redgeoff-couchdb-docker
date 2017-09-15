@@ -117,3 +117,6 @@ Create cluster:
     ./create-cluster.sh admin admin 5984 5986 "192.168.50.12 192.168.50.11"
 
 You can then use a load balancer to balance port 6984 traffic over 192.168.50.12 and 192.168.50.11. You can also do the the SSL termination directly on the load balancer and have the load balancer connect with the CouchDB nodes on port 5984. For better security, you should use a firewall to make sure to only allow outside traffic via the load balancer.
+
+## On AWS
+See [Running a CouchDB 2.0 Cluster in Production on AWS with Docker](https://hackernoon.com/running-a-couchdb-2-0-cluster-in-production-on-aws-with-docker-50f745d4bdbc)
