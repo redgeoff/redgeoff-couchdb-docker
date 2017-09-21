@@ -69,9 +69,6 @@ RUN buildDeps=" \
   && mv ./rel/couchdb /home/couchdb \
   && cd ../ \
   && rm -rf apache-couchdb-$COUCHDB_VERSION \
-  && chown -R couchdb:couchdb /home/couchdb/couchdb \
-  && find /home/couchdb/couchdb -type d -exec chmod 0770 {} \; \
-  && chmod 0644 /home/couchdb/couchdb/etc/* \
   && apt-get purge -y --auto-remove $buildDeps \
   && rm -rf /var/lib/apt/lists/*
 
@@ -83,6 +80,9 @@ COPY ./docker-entrypoint.sh /
 
 # Setup directories and permissions
 RUN mkdir -p /home/couchdb/couchdb/data /home/couchdb/couchdb/etc/default.d \
+  && find /home/couchdb/couchdb -type d -exec chmod 0770 {} \; \
+  && chmod 0644 /home/couchdb/couchdb/etc/* \
+  && chmod 775 /home/couchdb/couchdb/etc/*.d \
   && chown -R couchdb:couchdb /home/couchdb/couchdb/
 
 WORKDIR /home/couchdb/couchdb
