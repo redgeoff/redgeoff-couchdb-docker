@@ -51,6 +51,7 @@ Then run:
     docker run -d --name couchdb \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
+      -v /home/ubuntu/common/etc/local.ini:/home/couchdb/couchdb/etc/local.d/local.ini \
       -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1.mydomain.com" \
       -e COUCHDB_USER='admin' \
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
@@ -59,7 +60,6 @@ Then run:
       -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
-      -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
       redgeoff/couchdb
 
 
@@ -79,6 +79,7 @@ On server 1, run:
       -p 4369:4369 \
       -p 9100-9200:9100-9200 \
       -v /home/ubuntu/common:/home/couchdb/common \
+      -v /home/ubuntu/common/etc/local.ini:/home/couchdb/couchdb/etc/local.d/local.ini \
       -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb1.mydomain.com" \
       -e COUCHDB_USER='admin' \
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
@@ -88,7 +89,6 @@ On server 1, run:
       -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
-      -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
       redgeoff/couchdb
 
 On server 2, run:
@@ -100,6 +100,7 @@ On server 2, run:
       -p 4369:4369 \
       -p 9100-9200:9100-9200 \
       -v /home/ubuntu/common:/home/couchdb/common \
+      -v /home/ubuntu/common/etc/local.ini:/home/couchdb/couchdb/etc/local.d/local.ini \
       -e COUCHDB_DATA_DIR="/home/couchdb/common/data/couchdb2.mydomain.com" \
       -e COUCHDB_USER='admin' \
       -e COUCHDB_HASHED_PASSWORD='-pbkdf2-b1eb7a68b0778a529c68d30749954e9e430417fb,4da0f8f1d98ce649a9c5a3845241ae24,10' \
@@ -109,7 +110,6 @@ On server 2, run:
       -e COUCHDB_CERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
       -e COUCHDB_KEY_FILE="/home/couchdb/common/ssl/mydomain.com.key" \
       -e COUCHDB_CACERT_FILE="/home/couchdb/common/ssl/mydomain.com.crt" \
-      -e COUCHDB_LOCAL_INI="/home/couchdb/common/etc/local.ini" \
       redgeoff/couchdb
 
 Create cluster:
