@@ -14,6 +14,7 @@ CouchDB in a docker container
       -e COUCHDB_SECRET='mysecret' \
       redgeoff/couchdb
 
+Creates a CouchDB instance listening on port 5984 with an admin username and password of `admin`.
 
 ## Example with SSL
 
