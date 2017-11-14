@@ -40,7 +40,7 @@ RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364
 
 # Assuming the build process stays the same, you should be able to just change value of
 # COUCHDB_VERSION to upgrade to the latest source
-ENV COUCHDB_VERSION 2.1.0
+ENV COUCHDB_VERSION 2.1.1
 
 # Download CouchDB, build it and then clean up
 RUN buildDeps=" \
