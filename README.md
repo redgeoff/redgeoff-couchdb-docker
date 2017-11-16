@@ -2,6 +2,12 @@
 
 CouchDB in a docker container
 
+## Hashing a password
+All your CouchDB nodes need the same hashed password so that user sessions can work seamlessly between nodes. You can use the `couch-hash-pwd` utility to generate this hash. For example, if your password is `admin` you can use:
+    
+    $ sudo npm install -g couch-hash-pwd
+    $ couchdb-hash-pwd -p admin
+
 ## Example
 
     docker run -d --name couchdb \
