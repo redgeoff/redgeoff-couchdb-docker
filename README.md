@@ -7,6 +7,8 @@ All your CouchDB nodes need the same hashed password so that user sessions can w
     
     $ sudo npm install -g couch-hash-pwd
     $ couchdb-hash-pwd -p admin
+    
+You'll then want to use the outputted value as the value of `COUCHDB_HASHED_PASSWORD` 
 
 ## Example
 
@@ -20,7 +22,7 @@ All your CouchDB nodes need the same hashed password so that user sessions can w
       -e COUCHDB_SECRET='mysecret' \
       redgeoff/couchdb
 
-Creates a CouchDB instance listening on port 5984 with an admin username and password of `admin`.
+Creates a CouchDB instance listening on port 5984 with an admin username and password of `admin`. `COUCHDB_COOKIE` and `COUCHDB_SECRET` should be some random string of characters--you may want to use a password generator to generate these values.
 
 ## Example with SSL
 
