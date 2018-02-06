@@ -123,9 +123,9 @@ On server 2, run:
 
 Create cluster:
 
-    ./create-cluster.sh admin admin 5984 5986 "192.168.50.12 192.168.50.11"
+    ./create-cluster.sh admin admin 5984 5986 "192.168.50.10 192.168.50.11"
 
-You can then use a load balancer to balance port 6984 traffic over 192.168.50.12 and 192.168.50.11. You can also do the the SSL termination directly on the load balancer and have the load balancer connect with the CouchDB nodes on port 5984. For better security, you should use a firewall to make sure to only allow outside traffic via the load balancer.
+You can then use a load balancer to balance port 6984 traffic over 192.168.50.10 and 192.168.50.11. You can also do the the SSL termination directly on the load balancer and have the load balancer connect with the CouchDB nodes on port 5984. For better security, you should use a firewall to make sure to only allow outside traffic via the load balancer.
 
 ## Upgrade to latest image
 
