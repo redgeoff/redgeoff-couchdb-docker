@@ -13,6 +13,7 @@ You'll then want to use the outputted value as the value of `COUCHDB_HASHED_PASS
 ## Example
 
     docker run -d --name couchdb \
+      --log-opt max-size=100m \
       --restart always \
       -p 5984:5984 \
       -v /home/ubuntu/common:/home/couchdb/common \
@@ -30,6 +31,7 @@ Creates a CouchDB instance listening on port 5984 with an admin username and pas
 We assume /home/ubuntu/common/ssl/mydomain.com.crt and /home/ubuntu/common/ssl/mydomain.com.key are the certificate and private key for your SSL config.
 
     docker run -d --name couchdb \
+      --log-opt max-size=100m \
       --restart always \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
@@ -60,6 +62,7 @@ We assume /home/ubuntu/common/etc/local.ini contains any custom config, e.g.
 Then run:
 
     docker run -d --name couchdb \
+      --log-opt max-size=100m \
       --restart always \
       -p 6984:6984 \
       -v /home/ubuntu/common:/home/couchdb/common \
@@ -85,6 +88,7 @@ For example, assume that you have the following DNS config:
 On server 1, run:
 
     docker run -d --name couchdb \
+      --log-opt max-size=100m \
       --restart always \
       -p 5984:5984 \
       -p 6984:6984 \
@@ -107,6 +111,7 @@ On server 1, run:
 On server 2, run:
 
     docker run -d --name couchdb \
+      --log-opt max-size=100m \
       --restart always \
       -p 5984:5984 \
       -p 6984:6984 \
