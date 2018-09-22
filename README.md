@@ -1,3 +1,6 @@
+# DEPRECATED: This repo is no longer supported
+Use [https://github.com/apache/couchdb-docker](https://github.com/apache/couchdb-docker) instead.
+
 # redgeoff-couchdb-docker
 
 CouchDB in a docker container
